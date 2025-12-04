@@ -5,8 +5,7 @@
 // by checking neighbors at exponentially decreasing step sizes
 
 struct JumpFloodUniform {
-    @align(16)
-    step_length: u32,
+    step_length: vec4<u32>,
 }
 
 @group(0) @binding(0) var flood_texture: texture_2d<f32>;
@@ -24,7 +23,7 @@ fn calculate_priority(candidate_depth: f32, mesh_priority: f32) -> f32 {
 @fragment
 fn fragment(in: FullscreenVertexOutput) -> @location(0) vec4<f32> {
     let dims = vec2<f32>(textureDimensions(flood_texture));
-    let step = i32(instance.step_length);
+    let step = i32(instance.step_length.x);
 
     let current = textureSample(flood_texture, texture_sampler, in.uv);
     var best_candidate = current;

@@ -25,10 +25,9 @@ use crate::shaders::FLOOD_SHADER_HANDLE;
 
 use super::{ExtractedOutline, OutlineCamera};
 
-#[derive(ShaderType)]
+#[derive(ShaderType, Clone, Copy)]
 pub struct JumpFloodUniform {
-    // #[align(16)]
-    pub step_length: u32,
+    pub step_length: UVec4,
 }
 
 #[derive(Component, Default, Clone)]
@@ -118,7 +117,7 @@ impl FromWorld for JumpFloodPipeline {
         let mut offsets = Vec::new();
         for bit in 0..32 {
             offsets.push(uniform_buffer.push(&JumpFloodUniform {
-                step_length: 1 << bit,
+                step_length: UVec4::new(1 << bit, 0, 0, 0),
             }));
         }
         uniform_buffer.write_buffer(&render_device, render_queue);
