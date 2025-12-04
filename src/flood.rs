@@ -27,7 +27,7 @@ use super::{ExtractedOutline, OutlineCamera};
 
 #[derive(ShaderType)]
 pub struct JumpFloodUniform {
-    #[align(16)]
+    // #[align(16)]
     pub step_length: u32,
 }
 

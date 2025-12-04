@@ -13,8 +13,10 @@ exclude = [".github/", "assets/"]
 readme = "README.md"
 
 [dependencies]
-bevy = "0.17.2"
-bevy_render = "0.17.2"
+# bevy = "0.17.2"
+bevy = { git = "https://github.com/TeamDman/bevy.git", branch = "teamy-mft" }
+# bevy_render = "0.17.2"
+bevy_render = { git = "https://github.com/TeamDman/bevy.git", branch = "teamy-mft" }
 rand = "0.9.2"
 tracing = "0.1.41"
 wgpu-types = "26.0.0"
@@ -35,3 +37,7 @@ path = "examples/intersecting.rs"
 [[example]]
 name = "animated_mesh"
 path = "examples/animated_mesh.rs"
+
+[patch."https://github.com/TeamDman/bevy"]
+bevy = { path = "D:/Repos/games/bevy" }
+bevy_render = { path = "D:/Repos/games/bevy/crates/bevy_render" }
